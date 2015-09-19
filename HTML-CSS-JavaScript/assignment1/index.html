@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dating Website</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<h2> Please Enter Your Details For Our Dating Website! </h2>
+	<form action="https://ihome.ust.hk/~rossiter/cgi-bin/show_everything.php" method="post" enctype="multipart/form-data">
+		<fieldset>
+			<legend> Your Face </legend><br>
+			<label for="img_file"> Your image: </label><input type="file" id="img_file" name="img_file" required><br><br>
+			<label for="preview"> Image preview: </label><img id="preview"><br>
+		</fieldset>
+		<fieldset>
+			<legend> Your General Details </legend><br>
+			<label for="name"> Name: </label><input type="text" placeholder="your full name" id="name" name="name" required><br><br>
+			 <label for="gender"> Gender: </label>
+			 <input type="radio" name="gender" id="male" value="male" required> Male
+			 <input type="radio" name="gender" id="female" value="female" required> Female<br><br>
+			 <label for="age"> Age: </label><input type="number" id="age" name="age" value="18" required><br><br>
+			 <label for="birth"> Date of birth: </label><input type="date" id="birth" name="birth" placeholder="dd/mm/yyyy"><br><br>
+			 <label for="color"> Favourite color: </label><input type="color" id="color" name="color"><br><br>
+			 <label for="country"> Which country: </label>
+			 <select id="country" name="country">
+			 	<option selected>no selection</option>
+			 	<option>Finland</option>
+			 	<option>Switzerland</option>
+			 	<option>India</option>
+			 	<option>China</option>
+			 	<option>Brazil</option>
+			 </select>
+		</fieldset>
+		<fieldset>
+			<legend> Your Indicators </legend><br>
+			<label for="height"> Height:</label>
+			<text class="range-start"> Short </text>
+			<input type="range" min="0" max="100" id="height" name="height">
+			<text class="range-end"> Tall </text><br>
+			<label for="salary"> Salary: </label>
+			<text class="range-start"> Poor </text>
+			<input type="range" min="0" max="100" id="salary" name="salary">
+			<text class="range-end"> Rich </text>
+		</fieldset>
+		<fieldset>
+			<legend> Your Contact Information </legend><br>
+			<label for="email"> Email: </label><input type="email"  id="email" name="email" required><br><br/>
+			<label for="mobile"> Mobile: </label><input type="tel"  id="mobile" name="mobile"><br><br>
+			<label for="address"> Address: </label><textarea  id="address" name="address"></textarea><br><br>
+			<label for="contact"> Methods to contact you: </label>
+			<input type="checkbox" id="ch1" name="contact"> Email
+			<input type="checkbox" id="ch2" name="contact"> Whatsapp
+			<input type="checkbox" id="ch3" name="contact"> In app chat
+		</fieldset>
+		<input type="submit" value="Submit">
+	</form>
+
+	<script src="https://www.cse.ust.hk/~rossiter/dating_web_site.js"></script>
+</body>
+</html>

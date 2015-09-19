@@ -1,0 +1,66 @@
+
+fieldset{
+	background-color: lightyellow;
+	border: 10px solid yellow;
+	margin-bottom: 10px;
+	width: 720px;
+}
+
+label{
+	width: 180px;
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 5px;
+	text-align: right;
+}
+
+input[type='checkbox']{
+	width: auto;
+}
+
+input[type='radio']{
+	width: auto;
+}
+
+textarea{
+	width: 360px;
+	height: 50px;
+}
+
+.range-start{
+	display: inline-block;
+	width: 40px;
+	background-color: brown;
+	border: 7px solid brown;
+	color: white;
+	vertical-align: top;
+	text-align: center;
+}
+
+.range-end{
+	display: inline-block;
+	width: 40px;
+	background-color: purple;
+	border: 7px solid purple;
+	color: white;
+	vertical-align: top;
+	text-align: center;
+}
+
+input:hover{
+	/*font-size: 25px;*/
+    -ms-transform: scale(1.3);
+    -moz-transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+    -o-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
+label:hover{
+	font-size: 25px;
+/*		    -ms-transform: scale(2);
+    -moz-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);*/
+}
