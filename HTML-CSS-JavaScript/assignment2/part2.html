@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Guess the Color Game</title>
+</head>
+
+<body>
+    <script>
+
+    var colors = ['aqua', 'wheat', 'tan', 'orchid', 'bisque', 'chocolate', 'lime', 'olive', 'plum', 'salmon', 'tomato'];
+    
+    do_game();
+
+    function do_game(){
+        var answer = colors[Math.floor(Math.random() * colors.length)];
+        var count_guess = 0;
+        // Uncomment the next line to see answer in console
+        // console.log("the answer is " + answer);
+
+        while (guess != answer){
+            count_guess++;
+            var guess = prompt("I am thinking of one of these colors:\n\n" + colors + "\n\nWhat color am I thinking of?", "color");
+            check_guess(guess, answer);
+        }
+        document.body.style.background = answer;
+        alert("Congratulations! You have guessed the color!\n\nIt took " + count_guess + " guesses to finish the game!\n\nYou can see the color in the background.");
+    }    
+
+    function check_guess(guess, answer){
+        if (includes(guess, colors)){
+            if (guess > answer)
+                alert("Sorry, your guess is not correct!\n\nHint: your color is alphabetically higher than mine.\n\nPlease try again.");
+            else if (guess < answer)
+                alert("Sorry, your guess is not correct!\n\nHint: your color is alphabetically lower than mine.\n\nPlease try again.");
+        }
+        else{
+            alert("Sorry, I don't recognize your color.\n\nPlease try again.");
+        }
+    }
+    
+    function includes(what, where){
+        for (var i = 0; i < colors.length; i++){
+            if (what == where[i])
+                return true;
+        }
+        return false;
+    }
+    </script>
+</body>
+</html>

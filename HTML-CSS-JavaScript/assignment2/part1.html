@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Guess the Color Game</title>
+</head>
+
+<body>
+    <script>
+
+    var colors = ['aqua', 'wheat', 'tan', 'orchid', 'bisque', 'chocolate', 'lime', 'olive', 'plum', 'salmon', 'tomato'];
+    
+    do_game();
+
+    function do_game(){
+        var answer = colors[Math.floor(Math.random() * colors.length)];
+        var count_guess = 0;
+        // Uncomment the next line to see answer in console
+        console.log("the answer is " + answer);
+
+        while (guess != answer){
+            count_guess++;
+            var guess = prompt("I am thinking of one of these colors:\n\n" + colors + "\n\nWhat color am I thinking of?", "color");
+        }
+        document.body.style.background = answer;
+        alert("Congratulations! You have guessed the color!\n\nIt took " + count_guess + " guesses to finish the game!\n\nYou can see the color in the background.");
+    }    
+    </script>
+</body>
+</html>
