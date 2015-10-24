@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Matching Game</title>
-    <link rel="icon" type="image/png" href="smile.png">
+    <link rel="icon" type="image/png" href="http://home.cse.ust.hk/~rossiter/mooc/matching_game/smile.png">
 
     <style type="text/css">
     img {
@@ -29,7 +29,7 @@
     <script>
 
 var theLeftSide = document.getElementById('leftSide');
-var numberOfFaces = 6;
+var numberOfFaces = 5;
 
 generateFaces(numberOfFaces);
 
@@ -38,7 +38,7 @@ function generateFaces(numberOfFaces){
     for (var i = 0; i < numberOfFaces; i++){
     
         var img_new = document.createElement('img');
-        img_new.src = 'smile.png';
+        img_new.src = 'http://home.cse.ust.hk/~rossiter/mooc/matching_game/smile.png';
 
         var rand_x =  Math.floor(Math.random() * 400);
         var rand_y = Math.floor(Math.random() * 400);
