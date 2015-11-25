@@ -67,6 +67,6 @@ body{
     color: white;
 }
 
-#nav-form > input {
-    /*margin-bottom: 5px;*/
+#btn-reserve {
+    white-space: normal;
 }
