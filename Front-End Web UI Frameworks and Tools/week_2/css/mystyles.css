@@ -62,3 +62,11 @@ body{
 .navbar-inverse .navbar-nav .open .dropdown-menu> li> a:hover {
     color: #000000;
 }
+
+.checkbox-inline {
+    color: white;
+}
+
+#nav-form > input {
+    /*margin-bottom: 5px;*/
+}
