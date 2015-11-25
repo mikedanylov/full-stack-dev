@@ -62,11 +62,3 @@ body{
 .navbar-inverse .navbar-nav .open .dropdown-menu> li> a:hover {
     color: #000000;
 }
-
-.checkbox-inline {
-    color: white;
-}
-
-#btn-reserve {
-    white-space: normal;
-}
