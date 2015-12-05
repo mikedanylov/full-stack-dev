@@ -2,14 +2,10 @@
 <html lang="en">
 
 <head>
-
   <title>Ristorante Con Fusion</title>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head 
-       content must come *after* these tags -->
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-theme.min.css" rel="stylesheet">
@@ -20,7 +16,6 @@
 </head>
 
 <body>
-
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -34,23 +29,12 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active">
-            <a href="index.html">
-              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="aboutus.html">
-              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-              About
-            </a>
-          </li>
+          <li class="active"><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+          <li><a href="aboutus.html"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-             Menu
-             <span class="caret"></span></a>
+             Menu <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">Appetizers</a></li>
               <li><a href="#">Main Courses</a></li>
@@ -62,29 +46,19 @@
               <li><a href="#">Weekend Brunch</a></li>
             </ul>
           </li>
-          <li>
-            <a href="contactus.html">
-              <i class="fa fa-envelope-o"></i> Contact
-            </a>
-          </li>
+          <li><a href="contactus.html"><i class="fa fa-envelope-o"></i> Contact</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-          <div class="container-fluid">
-            <form class="navbar-form navbar-left" role="form">
-              <div id="nav-form" class="form-group">
-                <input type="text" class="form-control" id="email" name="email" placeholder="Email">
-                <input type="text" class="form-control" id="password" name="password" placeholder="Password">
-                <label class="checkbox-inline">
-                  <input type="checkbox" name="remember" value="" style="color: white;">
-                <strong>Remember me</strong>
+        <div class="navbar-form navbar-right">
+          <div class="form-group">
+              <input type="email" class="form-control" placeholder="Email">
+              <input type="password" class="form-control" placeholder="Password">
+              <label class="navbar-link">
+                  <input type="checkbox" value="">
+                  Remember Me
               </label>
-              <button type="submit" class="btn btn-info">Sign In</button>
-              </div>
-            </form>
-            </div>
-          </li>
-        </ul>
+              <button type="submit" class="btn btn-info">Sign in</button>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -239,8 +213,8 @@ creations will tickle your culinary senses!</p>
             </div>
           </form>
           <div class="alert alert-warning alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Warning: </strong>Please <strong>call </strong>us to reserve for more than six guests.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>Warning:</strong> Please <a href="tel:+85212345678" class="alert-link"><strong> Call</strong></a> us to reserve for more than six guests.
           </div>
         </div>
       </div>
