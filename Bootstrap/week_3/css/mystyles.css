@@ -73,3 +73,7 @@ body{
 .affix {
     top:100px;
 }
+
+.modal-open {
+    overflow: scroll;
+}
