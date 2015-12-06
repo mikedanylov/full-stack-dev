@@ -80,8 +80,12 @@ creations will tickle your culinary senses!</p>
         </div>
         <div id="div-reserve" class="col-xs-12 col-sm-2">
           <p style="padding:40px;"></p>
-          <a href="#reservation"style="text-decoration: none;">
-            <button id="btn-reserve" type="button" class="btn btn-warning btn-block" style="white-space: normal;">Reserve Table</button>
+          <a type="button" class="btn btn-warning btn-block"
+            data-toggle="tooltip" title="Or Call us at +852 12345678"
+            data-placement="bottom" href="#reservation">
+            <!-- <button id="btn-reserve" type="button" class="btn btn-warning btn-block" style="white-space: normal;"> -->
+              Reserve Table
+            <!-- </button> -->
           </a>
         </div>
       </div>
@@ -270,7 +274,12 @@ creations will tickle your culinary senses!</p>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
 
 </body>
 </html>
