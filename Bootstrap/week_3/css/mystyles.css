@@ -75,7 +75,8 @@ body{
 }
 
 .modal-open {
-    overflow: scroll;
+    padding-right: 0 !important;
+    overflow: no-scroll;
 }
 
 .carousel {
