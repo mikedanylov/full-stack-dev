@@ -1,0 +1,15 @@
+{
+  "name": "assignment4",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikedanylov/full-stack-dev/tree/master/Bootstrap/week_4"
+  },
+  "author": "mikedanylov",
+  "license": "BSD"
+}
