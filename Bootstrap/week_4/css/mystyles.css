@@ -85,6 +85,13 @@ body{
 .carousel .item {
   height: 300px;
 }
+
+#carouselButtons {
+    right:0px;
+    position: absolute;
+    bottom: 0px;
+}
+
 .item img {
     position: absolute;
     top: 0;
