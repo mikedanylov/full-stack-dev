@@ -1,0 +1,24 @@
+{
+  "name": "assignment4",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "mikedanylov"
+  ],
+  "license": "BSD",
+  "homepage": "https://github.com/mikedanylov/full-stack-dev",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.5.0",
+    "bootstrap-social": "~4.11.0"
+  }
+}
