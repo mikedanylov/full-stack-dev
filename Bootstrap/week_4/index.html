@@ -178,8 +178,7 @@
         </div>
         <div id="div-reserve" class="col-xs-12 col-sm-2">
           <p style="padding:40px;"></p>
-          <a type="button" class="btn btn-warning btn-block"
-              data-toggle="modal" data-target="#reservationModal">
+          <a id="btn-reserve" type="button" class="btn btn-warning btn-block">
               Reserve Table
           </a>
         </div>
@@ -388,12 +387,18 @@
   <!-- Carousel activation buttons -->
   <script>
       $(document).ready(function(){
+        // Carousel setup
         $("#mycarousel").carousel( { interval: 2000 } );
         $("#carousel-pause").click(function(){
           $("#mycarousel").carousel('pause');
         });
         $("#carousel-play").click(function(){
           $("#mycarousel").carousel('cycle');
+        });
+
+        // Reserve button toggles modal
+        $('#btn-reserve').click( function() {
+          $('#reservationModal').modal('show');
         });
       });
     </script>
