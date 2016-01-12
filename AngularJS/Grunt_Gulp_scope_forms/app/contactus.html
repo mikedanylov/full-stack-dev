@@ -69,8 +69,7 @@
           <div class="form-group" ng-class="{ 'has-error' : feedbackForm.firstname.$error.required && !feedbackForm.firstname.$pristine }">
             <label for="firstname" class="col-sm-2 control-label">First Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name"
-            ng-model="feedback.firstName" required>
+              <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name" ng-model="feedback.firstName" required>
               <span ng-show="feedbackForm.firstname.$error.required && !feedbackForm.firstname.$pristine" class="help-block">Your First name is required.</span>
             </div>
           </div>
