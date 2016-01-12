@@ -152,11 +152,13 @@ angular.module('confusionApp', [])
 .controller('DishCommentController', ['$scope', function($scope) {
 		
 	//Step 1: Create a JavaScript object to hold the comment from the form
-	$scope.comment = {
+	var comment = {
 		yourname: '',
 		stars: 5,
 		text: ''
 	}
+
+	$scope.comment = comment;
 
 	$scope.submitComment = function () {
 		//Step 2: This is how you record the date
@@ -164,6 +166,7 @@ angular.module('confusionApp', [])
 		
 		// Step 3: Push your comment into the dish's comment array
 		$scope.dish.comments.push($scope.comment);
+		console.log($scope.dish.comments);
 		
 		//Step 4: reset your form to pristine
 		
