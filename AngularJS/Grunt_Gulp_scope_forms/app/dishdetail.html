@@ -27,49 +27,47 @@
 
     <div class="container">
         <div class="row row-content" ng-controller="dishDetailController as detailsCtrl">
-            <div class="col-xs-12">
-              <div class="media">
-                  <div class="media-left media-middle">
-                    <a href="#">
-                      <img class="media-object img-thumbnail"
-                        ng-src={{detailsCtrl.dish.image}} alt="Uthappizza">
-                    </a>
+          <div class="col-xs-12">
+            <div class="media">
+                <div class="media-left media-middle">
+                  <a href="#">
+                    <img class="media-object img-thumbnail"
+                      ng-src={{detailsCtrl.dish.image}} alt="Uthappizza">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h2 class="media-heading">{{detailsCtrl.dish.name}}
+                    <span class="label label-danger">{{detailsCtrl.dish.label}}</span>
+                    <span class="badge">{{detailsCtrl.dish.price | currency}}</span>
+                  </h2>
+                  <p>{{detailsCtrl.dish.description}}</p>
+                </div>
+            </div>
+          </div>
+          <div class="col-xs-9 col-xs-offset-1">
+            <div class = "row">
+              <div class = "col-xs-5">
+                <h3>Customer Comments</h3>
+              </div>
+              <div class = "col-xs-6" style="margin-top: 20px;">
+                <form class="form-inline" role="form">
+                  <div class="form-group">
+                    <label for="sort">Sort by:</label>
+                    <input type="text" class="form-control" id="sort" ng-model="detailsCtrl.sortOption">
                   </div>
-                  <div class="media-body">
-                    <h2 class="media-heading">{{detailsCtrl.dish.name}}
-                      <span class="label label-danger">{{detailsCtrl.dish.label}}</span>
-                      <span class="badge">{{detailsCtrl.dish.price | currency}}</span>
-                    </h2>
-                    <p>{{detailsCtrl.dish.description}}</p>
-                  </div>
+                </form>
               </div>
             </div>
-            <div class="col-xs-9 col-xs-offset-1">
-              <div class = "row">
-                <div class = "col-xs-5">
-                  <h3>Customer Comments</h3>
-                </div>
-                <div class = "col-xs-6" style="margin-top: 20px;">
-                  <form class="form-inline" role="form">
-                    <div class="form-group">
-                      <label for="sort">Sort by:</label>
-                      <input type="text" class="form-control" id="sort" ng-model="detailsCtrl.sortOption">
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="row">
-                <div class = "col-xs-12">
-                  <div ng-repeat="comment in detailsCtrl.dish.comments | orderBy: detailsCtrl.sortOption">
-                    <blockquote>
-                      <p>{{ comment.rating }} Stars</p>
-                      <p>{{ comment.comment }}</p>
-                      <footer>{{ comment.author }}, {{ comment.date | date : 'MMM. dd, yyyy' }}<footer>
-                    </blockquote>
-                  </div>
-                </div>
+            <div class="row">
+              <div class = "col-xs-12">
+                <blockquote ng-repeat="comment in detailsCtrl.dish.comments | orderBy: detailsCtrl.sortOption">
+                  <p>{{ comment.rating }} Stars</p>
+                  <p>{{ comment.comment }}</p>
+                  <footer>{{ comment.author }}, {{ comment.date | date : 'MMM. dd, yyyy' }}</footer>
+                </blockquote>
               </div>
             </div>
+          </div>
         </div>
 
     </div>
