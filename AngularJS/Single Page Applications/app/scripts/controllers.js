@@ -94,6 +94,22 @@ angular.module('confusionApp')
 }])
 
 // implement the IndexController and About Controller here
+.controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function ($scope, menuFactory, corporateFactory) {
+	
+	$scope.dishes = menuFactory.getDishes();
+	// get random featured dish from array of dishes
+	$scope.featured = menuFactory.getDish(getRandom($scope.dishes.length + 1));
+	$scope.promotion = menuFactory.getPromotion(0);
+	$scope.execChef = corporateFactory.getLeader(3);
 
+	function getRandom(max) {
+		return Math.floor(Math.random() * (max + 1));
+	}
+}])
 
+.controller('AboutController', ['$scope', 'corporateFactory', function ($scope, corporateFactory) {
+
+	$scope.leaders = corporateFactory.getLeaders();
+	
+}])
 ;
