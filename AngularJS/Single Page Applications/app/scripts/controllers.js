@@ -3,13 +3,14 @@
 angular.module('confusionApp')
 
 .controller('MenuController', ['$scope', 'menuFactory', function($scope, menuFactory) {
-		
+	
 	$scope.tab = 1;
 	$scope.filtText = '';
 	$scope.showDetails = false;
 
-	$scope.dishes = menuFactory.getDishes();
-								
+	$scope.dishes= menuFactory.getDishes();
+
+				
 	$scope.select = function(setTab) {
 		$scope.tab = setTab;
 		
@@ -44,16 +45,16 @@ angular.module('confusionApp')
 	
 	$scope.channels = channels;
 	$scope.invalidChannelSelection = false;
-								
+				
 }])
 
 .controller('FeedbackController', ['$scope', function($scope) {
-		
+	
 	$scope.sendFeedback = function() {
-			
+		
 		console.log($scope.feedback);
 		
-		if ($scope.feedback.agree && ($scope.feedback.mychannel === "")) {
+		if ($scope.feedback.agree && ($scope.feedback.mychannel == "")) {
 			$scope.invalidChannelSelection = true;
 			console.log('incorrect');
 		}
@@ -67,42 +68,32 @@ angular.module('confusionApp')
 	};
 }])
 
-.controller('DishDetailsController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
-    var dish= menuFactory.getDish(parseInt($stateParams.id,10));
-    $scope.dish = dish;
+.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
+
+	var dish= menuFactory.getDish(parseInt($stateParams.id,10));
+	
+	$scope.dish = dish;
+	
 }])
 
 .controller('DishCommentController', ['$scope', function($scope) {
-		
-	//Step 1: Create a JavaScript object to hold the comment from the form
-	var comment = {
-		rating: 5,
-		comment: '',
-		author: '',
-		date: ""
-	};
-
-	$scope.comment = comment;
-
+	
+	$scope.mycomment = {rating:5, comment:"", author:"", date:""};
+	
 	$scope.submitComment = function () {
 		
-		//Step 2: Get current date
-		$scope.comment.date = new Date().toISOString();
+		$scope.mycomment.date = new Date().toISOString();
+		console.log($scope.mycomment);
 		
-		// Step 3: Push the comment into the dish's comment array
-		$scope.dish.comments.push($scope.comment);
-		// console.log($scope.dish.comments);
+		$scope.dish.comments.push($scope.mycomment);
 		
-		//Step 4: reset the form to pristine state
 		$scope.commentForm.$setPristine();
 		
-		//Step 5: reset JavaScript object that holds a comment
-		$scope.comment = {
-			rating: 5,
-			comment: '',
-			author: '',
-			date: ""
-		};
+		$scope.mycomment = {rating:5, comment:"", author:"", date:""};
+	}
+}])
 
-	};
-}]);
+// implement the IndexController and About Controller here
+
+
+;
