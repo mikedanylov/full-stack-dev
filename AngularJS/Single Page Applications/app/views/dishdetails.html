@@ -1,0 +1,94 @@
+<div class="container">
+	<div class="row row-content" ng-controller="DishDetailsController">
+			<div class="col-xs-12">
+				<button class="btn btn-xs btn-primary pull-right" type="button" ui-sref="app.menu">
+                    Back to Menu
+                </button>
+				<div class="media">
+					<div class="media-left media-middle">
+						<a href="#">
+							<img class="media-object img-thumbnail" ng-src={{dish.image}} alt="Uthappizza">
+						</a>
+					</div>
+					<div class="media-body">
+						<h2 class="media-heading">{{dish.name}}
+							<span class="label label-danger">{{dish.label}}</span>
+							<span class="badge">{{dish.price | currency}}</span>
+						</h2>
+						<p>{{dish.description}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-9 col-xs-offset-1">
+			<div class = "row">
+				<div class = "col-xs-5">
+					<h3>Customer Comments</h3>
+				</div>
+				<div class = "col-xs-6" style="margin-top: 20px;">
+					<form class="form-inline" role="form">
+						<div class="form-group">
+							<label for="sort">Sort by:</label>
+							<input type="text" class="form-control" id="sort" ng-model="sortOption">
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class = "col-xs-12">
+					<blockquote ng-repeat="comment in dish.comments | orderBy: sortOption">
+						<p>{{ comment.rating }} Stars</p>
+						<p>{{ comment.comment }}</p>
+						<footer>{{ comment.author }}, {{ comment.date | date : 'MMM. dd, yyyy' }}</footer>
+					</blockquote>
+				</div>
+				<div ng-controller="DishCommentController">
+					<div class = "col-xs-12" ng-show="!commentForm.$invalid && !commentForm.$pristine">
+					<blockquote>
+						<p>{{ comment.rating }} Stars</p>
+						<p>{{ comment.comment }}</p>
+						<footer>{{ comment.author }}</footer>
+					</blockquote>
+				</div>
+					<form class="form-horizontal" name="commentForm" ng-submit="submitComment()" novalidate>
+						<div class="form-group" ng-class="{ 'has-error' : commentForm.author.$invalid && !commentForm.author.$pristine }">
+							<label for="author" class="col-sm-2 control-label">Your Name</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="author" name="author" ng-model="comment.author" placeholder="Enter Your Name" required>
+								<span ng-show="commentForm.author.$invalid && !commentForm.author.$pristine" class="help-block">Name is a required field.</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="rating" class="col-sm-2 control-label">Number of Stars</label>
+							<div class="col-sm-10">
+								<label class="radio-inline">
+									<input type="radio" name="rating" id="1" value="1" ng-model="comment.rating"> 1</label>
+								<label class="radio-inline">
+									<input type="radio" name="rating" id="2" value="2" ng-model="comment.rating"> 2</label>
+								<label class="radio-inline">
+									<input type="radio" name="rating" id="3" value="3" ng-model="comment.rating"> 3</label>
+								<label class="radio-inline">
+									<input type="radio" name="rating" id="4" value="4" ng-model="comment.rating"> 4</label>
+								<label class="radio-inline active">
+									<input type="radio" name="rating" id="5" value="5" ng-model="comment.rating"> 5</label>
+							</div>
+						</div>
+						<div class="form-group" ng-class="{ 'has-error' : commentForm.comment.$invalid && !commentForm.comment.$pristine }">
+							<label for="comment" class="col-sm-2 control-label">Your Comments</label>
+							<div class="col-sm-10">
+								<textarea name="comment" class="form-control" rows="12" ng-model="comment.comment" required></textarea>
+								<span ng-show="commentForm.comment.$invalid && !commentForm.comment.$pristine" class="help-block">Your comments are required.</span>
+
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-primary" ng-disabled="commentForm.$invalid">Submit Comment</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
