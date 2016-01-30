@@ -181,27 +181,26 @@ angular.module('confusionApp')
 	];
 
 	this.getDishes = function(){
-		
 		return dishes;
 		
 	};
 
 	this.getDish = function (index) {
-		
 		return dishes[index];
 	};
 
 	// implement a function named getPromotion
 	// that returns a selected promotion.
-
+	this.getPromotion = function (index) {
+		return promotions[index];
+	};
 				
 })
 
 .factory('corporateFactory', function() {
 
-	var corpfac = {};
-
-	var leadership = [
+	var corpfac = {},
+	leadership = [
 		{
 			name: "Peter Pan",
 			image: 'images/alberto.png',
@@ -232,9 +231,13 @@ angular.module('confusionApp')
 		}
 	];
 
-	// Implement two functions, one named getLeaders,
-	// the other named getLeader(index)
-	// Remember this is a factory not a service
+	corpfac.getLeaders = function(){	
+		return leadership;		
+	};
 
+	corpfac.getLeader = function (index) {
+		return leadership[index];
+	};
 
+	return corpfac;
 });
