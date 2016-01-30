@@ -29,7 +29,21 @@
 			<h3 align=center>This Month's Promotions</h3>
 		</div>
 		<div class="col-xs-12 col-sm-9">
-			<h4>Implement the Promotion Here</h4>
+			<div class="media">
+				<div class="media-left media-middle">
+					<a href="">
+						<img class="media-object img-thumbnail" ng-src={{promotion.image}}>
+					</a>
+				</div>
+				<div class="media-body">
+					<h2 class="media-heading">{{promotion.name}}
+				  	<span class="label label-danger">{{fpromotion.label}}</span>
+				  	<span class="badge">${{promotion.price}}</span>
+					</h2>
+					<p>{{promotion.description}}</p>
+					<p><a class="btn btn-primary btn-xs" href="#">More &raquo;</a></p>
+				</div>
+			</div>
 		</div>
 	</div>
 
