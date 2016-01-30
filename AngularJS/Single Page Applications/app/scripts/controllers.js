@@ -80,7 +80,7 @@ angular.module('confusionApp')
 		comment: '',
 		author: '',
 		date: ""
-	}
+	};
 
 	$scope.comment = comment;
 
