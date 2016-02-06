@@ -7,11 +7,16 @@ angular.module('confusionApp')
 	$scope.tab = 1;
 	$scope.filtText = '';
 	$scope.showDetails = false;
+	$scope.showMenu = false;
+	$scope.message = "Loading ...";
 	$scope.dishes = {};
 
 	menuFactory.getDishes()
 	.then(function(response) {
 		$scope.dishes = response.data;
+		$scope.showMenu = true;
+	}, function(response) {
+		$scope.message = "Error: " + response.status + " " + response.statusText;
 	});
 				
 	$scope.select = function(setTab) {
@@ -74,12 +79,17 @@ angular.module('confusionApp')
 .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
 
 	$scope.dish = {};
+	$scope.showDish = false;
+	$scope.message = "Loading...";
 
 	menuFactory.getDish(parseInt($stateParams.id,10))
 	.then(function(response) {
 		$scope.dish = response.data;
-		$scope.showDish=true;
-	});
+		$scope.showDish = true;
+	}, function(response) {
+		$scope.message = "Error: " + response.status + " " + response.statusText;
+	}
+	);
 }])
 
 .controller('DishCommentController', ['$scope', function($scope) {
@@ -104,13 +114,17 @@ angular.module('confusionApp')
 	
 	// get random featured dish from array of dishes
 	$scope.featured = {};
+	$scope.showDish = false;
+	$scope.message="Loading ...";
 	$scope.promotion = menuFactory.getPromotion(0);
 	$scope.execChef = corporateFactory.getLeader(3);
 
 	menuFactory.getDish(getRandom(menuFactory.getDishes().length))
 	.then(function(response) {
-		$scope.dish = response.data;
+		$scope.featured = response.data;
 		$scope.showDish = true;
+	}, function(response) {
+		$scope.message = "Error: " + response.status + " " + response.statusText;
 	});
 
 	function getRandom(max) {
