@@ -7,17 +7,9 @@ angular.module('confusionApp')
 	$scope.tab = 1;
 	$scope.filtText = '';
 	$scope.showDetails = false;
-	$scope.showMenu = false;
+	$scope.showMenu = true;
 	$scope.message = "Loading ...";
-	$scope.dishes = {};
-
-	menuFactory.getDishes()
-	.then(function(response) {
-		$scope.dishes = response.data;
-		$scope.showMenu = true;
-	}, function(response) {
-		$scope.message = "Error: " + response.status + " " + response.statusText;
-	});
+	$scope.dishes = menuFactory.getDishes().query();
 				
 	$scope.select = function(setTab) {
 		$scope.tab = setTab;
@@ -62,7 +54,7 @@ angular.module('confusionApp')
 		
 		console.log($scope.feedback);
 		
-		if ($scope.feedback.agree && ($scope.feedback.mychannel == "")) {
+		if ($scope.feedback.agree && ($scope.feedback.mychannel === "")) {
 			$scope.invalidChannelSelection = true;
 			console.log('incorrect');
 		}
@@ -78,18 +70,11 @@ angular.module('confusionApp')
 
 .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
 
-	$scope.dish = {};
-	$scope.showDish = false;
+	$scope.showDish = true;
 	$scope.message = "Loading...";
-
-	menuFactory.getDish(parseInt($stateParams.id,10))
-	.then(function(response) {
-		$scope.dish = response.data;
-		$scope.showDish = true;
-	}, function(response) {
-		$scope.message = "Error: " + response.status + " " + response.statusText;
-	}
-	);
+	$scope.dish = menuFactory.getDishes().get({
+		id: parseInt($stateParams.id, 10)
+	});
 }])
 
 .controller('DishCommentController', ['$scope', function($scope) {
@@ -106,25 +91,19 @@ angular.module('confusionApp')
 		$scope.commentForm.$setPristine();
 		
 		$scope.mycomment = {rating:5, comment:"", author:"", date:""};
-	}
+	};
 }])
 
 // implement the IndexController and About Controller here
 .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function ($scope, menuFactory, corporateFactory) {
 	
 	// get random featured dish from array of dishes
-	$scope.featured = {};
-	$scope.showDish = false;
+	$scope.showDish = true;
 	$scope.message="Loading ...";
 	$scope.promotion = menuFactory.getPromotion(0);
 	$scope.execChef = corporateFactory.getLeader(3);
-
-	menuFactory.getDish(getRandom(menuFactory.getDishes().length))
-	.then(function(response) {
-		$scope.featured = response.data;
-		$scope.showDish = true;
-	}, function(response) {
-		$scope.message = "Error: " + response.status + " " + response.statusText;
+	$scope.featured = menuFactory.getDishes().get({
+		id: getRandom(menuFactory.getDishes().length)
 	});
 
 	function getRandom(max) {
