@@ -11,15 +11,15 @@
 			<div class="media" ng-if="showDish">
 				<div class="media-left media-middle">
 					<a href="">
-						<img class="media-object img-thumbnail" ng-src={{featured.image}}>
+						<img class="media-object img-thumbnail" ng-src={{dish.image}}>
 					</a>
 				</div>
 				<div class="media-body">
-					<h2 class="media-heading">{{featured.name}}
-				  	<span class="label label-danger">{{featured.label}}</span>
-				  	<span class="badge">${{featured.price}}</span>
+					<h2 class="media-heading">{{dish.name}}
+				  	<span class="label label-danger">{{dish.label}}</span>
+				  	<span class="badge">${{dish.price}}</span>
 					</h2>
-					<p>{{featured.description}}</p>
+					<p>{{dish.description}}</p>
 					<p><a class="btn btn-primary btn-xs" href="#">More &raquo;</a></p>
 				</div>
 			</div>
