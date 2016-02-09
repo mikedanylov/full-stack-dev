@@ -3,7 +3,7 @@
 angular.module('confusionApp')
 
 .controller('MenuController', ['$scope', 'menuFactory', function($scope, menuFactory) {
-	
+
 	$scope.tab = 1;
 	$scope.filtText = '';
 	$scope.showDetails = false;
@@ -19,10 +19,10 @@ angular.module('confusionApp')
 			$scope.message = "Error: " + response.status + " " + response.statusText;
 		}
 	);
-				
+
 	$scope.select = function(setTab) {
 		$scope.tab = setTab;
-		
+
 		if (setTab === 2) {
 			$scope.filtText = "appetizer";
 		}
@@ -49,20 +49,20 @@ angular.module('confusionApp')
 .controller('ContactController', ['$scope', function($scope) {
 
 	$scope.feedback = {mychannel:"", firstName:"", lastName:"", agree:false, email:"" };
-	
+
 	var channels = [{value:"tel", label:"Tel."}, {value:"Email",label:"Email"}];
-	
+
 	$scope.channels = channels;
 	$scope.invalidChannelSelection = false;
-				
+
 }])
 
 .controller('FeedbackController', ['$scope', function($scope) {
-	
+
 	$scope.sendFeedback = function() {
-		
+
 		console.log($scope.feedback);
-		
+
 		if ($scope.feedback.agree && ($scope.feedback.mychannel === "")) {
 			$scope.invalidChannelSelection = true;
 			console.log('incorrect');
@@ -82,7 +82,7 @@ angular.module('confusionApp')
 	$scope.dish = {};
 	$scope.showDish = false;
 	$scope.message = "Loading...";
-	
+
 	$scope.dish = menuFactory.getDishes().get({
 		id: parseInt($stateParams.id, 10)
 	})
@@ -97,28 +97,29 @@ angular.module('confusionApp')
 }])
 
 .controller('DishCommentController', ['$scope', 'menuFactory', function($scope, menuFactory) {
-	
+
 	var dflt = {rating: 5, comment: "", author: "", date: ""};
 	$scope.mycomment = dflt;
-	
+
 	$scope.submitComment = function () {
 		$scope.mycomment.date = new Date().toISOString();
 		$scope.dish.comments.push($scope.mycomment);
 		console.log($scope.mycomment);
 		menuFactory.getDishes().update({ id: $scope.dish.id }, $scope.dish);
 		$scope.commentForm.$setPristine();
-		$scope.mycomment = dflt;
+		$scope.mycomment = {rating: 5, comment: "", author: "", date: ""};
 	};
 }])
 
 // implement the IndexController and About Controller here
 .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function ($scope, menuFactory, corporateFactory) {
-	
+
 	// get random featured dish from array of dishes
 	$scope.showDish = false;
+	$scope.showPromo = false;
 	$scope.message="Loading ...";
-	$scope.promotion = menuFactory.getPromotion(0);
 	$scope.execChef = corporateFactory.getLeader(3);
+
 	$scope.dish = menuFactory.getDishes().get({id: 0})
 	.$promise.then(
 		function success(response) {
@@ -128,11 +129,21 @@ angular.module('confusionApp')
 			$scope.message = "Error: " + response.status + " " + response.statusText;
 		}
 	);
+
+	$scope.promotion = menuFactory.getPromotion().get({id: 0})
+	.$promise.then(
+		function success(response) {
+			$scope.promotion = response;
+			$scope.showPromo = true;
+		}, function error(response) {
+			$scope.message = "Error: " + response.status + " " + response.statusText;
+		}
+	);
 }])
 
 .controller('AboutController', ['$scope', 'corporateFactory', function ($scope, corporateFactory) {
 
 	$scope.leaders = corporateFactory.getLeaders();
-	
+
 }])
 ;
