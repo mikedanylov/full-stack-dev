@@ -117,8 +117,8 @@ angular.module('confusionApp')
 	// get random featured dish from array of dishes
 	$scope.showDish = false;
 	$scope.showPromo = false;
+	$scope.showLeader = false;
 	$scope.message="Loading ...";
-	$scope.execChef = corporateFactory.getLeader(3);
 
 	$scope.dish = menuFactory.getDishes().get({id: 0})
 	.$promise.then(
@@ -139,11 +139,30 @@ angular.module('confusionApp')
 			$scope.message = "Error: " + response.status + " " + response.statusText;
 		}
 	);
+
+	$scope.execChef = corporateFactory.getLeaders().get({id: 3})
+	.$promise.then(
+		function success(response) {
+			$scope.execChef = response;
+			$scope.showLeader = true;
+		}, function error(response) {
+			$scope.message = "Error: " + response.status + " " + response.statusText;
+		}
+	);
 }])
 
 .controller('AboutController', ['$scope', 'corporateFactory', function ($scope, corporateFactory) {
 
-	$scope.leaders = corporateFactory.getLeaders();
+	$scope.showLeaders = false;
+
+	$scope.leaders = corporateFactory.getLeaders().query(
+		function success(response) {
+			$scope.leaders = response;
+			$scope.showLeaders = true;
+		}, function error(response) {
+			$scope.message = "Error: " + response.status + " " + response.statusText;
+		}
+	);
 
 }])
 ;
