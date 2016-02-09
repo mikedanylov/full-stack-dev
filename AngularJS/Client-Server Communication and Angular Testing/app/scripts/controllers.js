@@ -9,11 +9,13 @@ angular.module('confusionApp')
 	$scope.showDetails = false;
 	$scope.showMenu = false;
 	$scope.message = "Loading ...";
+
 	menuFactory.getDishes().query(
-		function(response) {
+		function success(response) {
 			$scope.dishes = response;
 			$scope.showMenu = true;
-		}, function(response) {
+		},
+		function error(response) {
 			$scope.message = "Error: " + response.status + " " + response.statusText;
 		}
 	);
@@ -77,16 +79,18 @@ angular.module('confusionApp')
 
 .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
 
+	$scope.dish = {};
 	$scope.showDish = false;
 	$scope.message = "Loading...";
+	
 	$scope.dish = menuFactory.getDishes().get({
 		id: parseInt($stateParams.id, 10)
 	})
 	.$promise.then(
-		function(response) {
+		function success(response) {
 			$scope.dish = response;
 			$scope.showDish = true;
-		}, function(response) {
+		}, function error(response) {
 			$scope.message = "Error: " + response.status + " " + response.statusText;
 		}
 	);
@@ -117,10 +121,10 @@ angular.module('confusionApp')
 	$scope.execChef = corporateFactory.getLeader(3);
 	$scope.dish = menuFactory.getDishes().get({id: 0})
 	.$promise.then(
-		function(response) {
+		function success(response) {
 			$scope.dish = response;
 			$scope.showDish = true;
-		}, function(response) {
+		}, function error(response) {
 			$scope.message = "Error: " + response.status + " " + response.statusText;
 		}
 	);
