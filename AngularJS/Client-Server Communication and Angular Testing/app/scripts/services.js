@@ -2,7 +2,7 @@
 
 angular.module('confusionApp')
 
-.constant("baseURL","http://localhost:3000/")
+.constant("baseURL", "http://localhost:3000/")
 .service('menuFactory', ['$resource', 'baseURL', function($resource, baseURL) {
 
 	this.getDishes = function(){
@@ -31,4 +31,18 @@ angular.module('confusionApp')
 	};
 
 	return corpfac;
+}])
+
+.factory('feedbackFactory', ['$resource', 'baseURL', function($resource, baseURL) {
+
+	var feedback = {};
+
+	feedback.postFeedback = function() {
+		return $resource(baseURL + "feedback/:id",
+						null,
+						{ 'save': { method: 'POST' } }
+		);
+	};
+
+	return feedback;
 }]);
