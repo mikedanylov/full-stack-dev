@@ -1,0 +1,79 @@
+/**
+* Works everywere ( IE7+, FF, Chrome, Safari, Opera )
+* Example: http://jsbin.com/afAQAWA/2/
+*/
+.rotated-text-inner {
+    display: inline-block;
+    white-space: nowrap;
+    /* this is for shity "non IE" browsers
+       that don't support writing-mode */
+    -webkit-transform: translate(1.1em,0) rotate(-90deg);
+    -moz-transform: translate(1.1em,0) rotate(-90deg);
+    -o-transform: translate(1.1em,0) rotate(-90deg);
+    transform: translate(1.1em,0) rotate(-90deg);
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    transform-origin: 0 0;
+    /* IE9+ */
+    -ms-transform: none;
+    -ms-transform-origin: none;
+    /* IE8+ */
+    -ms-writing-mode: tb-rl;
+    /* IE7 and below */
+    *writing-mode: tb-rl;
+    position: inherit;
+    left: -3px;
+    top: 123px;
+}
+.rotated-text-inner:before {
+    content: "";
+    float: left;
+}
+.rotated-text:hover {
+    cursor: pointer;
+}
+.rotated-text {
+    display: inline-block;
+    overflow: hidden;
+    position: absolute;
+    width: inherit;
+    color: white;
+    text-align: center;
+    background-color: #368fcf;
+    border-radius: 5px 0 0 5px;
+    box-shadow: -15px 10px 20px 0 rgba(123, 123, 123, 0.8);
+    height: 140px;
+    z-index: 100;
+    top: 150px;
+    left: 5px;
+}
+.side-slider {
+    border: 2px tomato solid;
+    font: bold 15px "Helvetica Neue", arial!important;
+    position: fixed;
+    right: -425px;
+}
+.side-slider-tab {
+    display: inline-block;
+    height: 100%;
+    width: 50px;
+    border-radius: 5px 0 0 5px;
+    cursor: pointer;
+}
+.side-slider-content-wrapper {
+    background-color: #368fcf;
+    border-radius: 10px 0 0 10px;
+    box-shadow: -10px 10px 20px 5px rgba(123, 123, 123, 0.8);
+    padding: 20px;
+    z-index: 100;
+    height: 100%;
+    width: 380px;
+    color: white;
+    display: inline-block;
+}
+#divQuickDepositInfo {
+    height: 737px;
+    border: 3px rebeccapurple solid;
+    display: block;
+}
