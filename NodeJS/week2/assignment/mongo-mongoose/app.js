@@ -4,11 +4,23 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var assert = require('assert');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var dishRouter = require('./routes/dishRouter');
+var promoRouter = require('./routes/promoRouter');
+var leaderRouter = require('./routes/leaderRouter');
+
+var Dishes = require('./models/dishes');
 
 var app = express();
+
+// Connection URL
+var url = 'mongodb://localhost:27017/conFusion';mongoose.connect(url);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/dishes', dishRouter);
+app.use('/promotions', promoRouter);
+app.use('/leadership', leaderRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -54,6 +69,47 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+});
+
+
+db.once('open', function () {
+    // we're connected!
+    console.log("Connected correctly to server");
+
+    // create a new dish
+    Dishes.create({
+        name: 'Uthapizza',
+        image: 'images/uthapizza.png',
+        category: 'mains',
+        label: 'Hot',
+        price: "$4.6",
+        description: 'A unique...',
+        comments: [
+            {
+                rating: 5,
+                comment: "Imagine all the eatables, living in conFusion!",
+                author: "John Lemon"
+            },
+            {
+                rating: 4,
+                comment: "Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
+                author: "Paul McVites"
+            }
+        ]
+    }, function (err, dish) {
+        if (err) throw err;
+        console.log('Dish created!');
+        console.log(dish);
+
+        Dishes.find({}, function (err, dishes) {
+            if (err) throw err;
+
+            console.log(dishes);
+            db.collection('dishes').drop(function () {
+                db.close();
+            });
+        });
+    });
 });
 
 
