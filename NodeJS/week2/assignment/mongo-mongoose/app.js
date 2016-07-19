@@ -15,6 +15,7 @@ var leaderRouter = require('./routes/leaderRouter');
 
 var Dishes = require('./models/dishes');
 var Promotions = require('./models/promotions');
+var Leaders = require('./models/leadership');
 
 var app = express();
 
@@ -112,7 +113,7 @@ db.once('open', function () {
         });
     });
 
-    // create a new dish
+    // create a new promotion
     Promotions.create({
         name: 'Weekend Grand Buffet',
         image: 'images/buffet.png',
@@ -129,6 +130,28 @@ db.once('open', function () {
 
             console.log(promotions);
             db.collection('promotions').drop(function () {
+                db.close();
+            });
+        });
+    });
+
+    // create a new leader
+    Leaders.create({
+        name: 'Peter Pan',
+        image: 'images/alberto.png',
+        designation: 'Chief Epicurious Officer',
+        abbr: 'CEO',
+        description: 'Our CEO, Peter...'
+    }, function (err, leader) {
+        if (err) throw err;
+        console.log('Leader created!');
+        console.log(leader);
+
+        Promotions.find({}, function (err, leaders) {
+            if (err) throw err;
+
+            console.log(leaders);
+            db.collection('leaders').drop(function () {
                 db.close();
             });
         });
