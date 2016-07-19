@@ -14,6 +14,7 @@ var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 
 var Dishes = require('./models/dishes');
+var Promotions = require('./models/promotions');
 
 var app = express();
 
@@ -82,7 +83,7 @@ db.once('open', function () {
         image: 'images/uthapizza.png',
         category: 'mains',
         label: 'Hot',
-        price: "$4.6",
+        price: '$4.60',
         description: 'A unique...',
         comments: [
             {
@@ -106,6 +107,28 @@ db.once('open', function () {
 
             console.log(dishes);
             db.collection('dishes').drop(function () {
+                db.close();
+            });
+        });
+    });
+
+    // create a new dish
+    Promotions.create({
+        name: 'Weekend Grand Buffet',
+        image: 'images/buffet.png',
+        label: 'New',
+        price: '$19.99',
+        description: 'Featuring...'
+    }, function (err, promotion) {
+        if (err) throw err;
+        console.log('Promotion created!');
+        console.log(promotion);
+
+        Promotions.find({}, function (err, promotions) {
+            if (err) throw err;
+
+            console.log(promotions);
+            db.collection('promotions').drop(function () {
                 db.close();
             });
         });
