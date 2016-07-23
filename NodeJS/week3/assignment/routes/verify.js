@@ -14,25 +14,25 @@ exports.verifyOrdinaryUser = function (req, res, next) {
     var token = req.body.token || req.query.token ||
                 req.headers['x-access-token'];
 
-    // decode token
-    if (token) {
-        // verifies secret and checks exp
-        jwt.verify(token, config.secretKey, function (err, decoded) {
-            if (err) {
-                var err = new Error('You are not authenticated!');
-                err.status = 401;
-                return next(err);
-            } else {
-                // if everything is good,
-                // save to request for use in other routes
-                req.decoded = decoded;
-                next();
-            }
-        });
-    } else {
-        // return an error if there is no token
-
+    if (!token) {
+        var err = new Error('No token provided!');
+        err.status = 403;
+        return next(err);
     }
+
+    // verifies secret and checks exp
+    jwt.verify(token, config.secretKey, function (err, decoded) {
+        if (err) {
+            err = new Error('You are not authenticated!');
+            err.status = 401;
+            return next(err);
+        } else {
+            // if everything is good,
+            // save to request for use in other routes
+            req.decoded = decoded;
+            next();
+        }
+    });
 };
 
 exports.verifyAdmin = function (req, res, next) {
@@ -47,15 +47,15 @@ exports.verifyAdmin = function (req, res, next) {
 
     jwt.verify(token, config.secretKey, function (err, decoded) {
 
-        if (err || !req.decoded._doc.admin) {
-            var err = new Error('You are not authenticated!');
+        if (err || !decoded || !decoded._doc.admin) {
+            err = new Error('You are not authenticated!');
             err.status = 401;
             return next(err);
         }
 
-        console.log(req.decoded._doc);
+        console.log(decoded._doc);
 
         req.decoded = decoded;
         next();
     });
-}
+};
