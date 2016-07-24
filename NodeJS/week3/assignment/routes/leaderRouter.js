@@ -1,43 +1,73 @@
+
 var express = require('express');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+var Leaders = require('../models/lidership');
+
 var leaderRouter = express.Router();
+leaderRouter.use(bodyParser.json());
+
+var Verify = require('./verify');
 
 leaderRouter.route('/')
-    .all(function(req, res, next) {
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
-        next();
-    })
-
-    .get(function(req, res, next){
-        res.end('Will send all the leaders to you!');
-    })
-
-    .post(function(req, res, next){
-        res.end('Will add the leader: ' + req.body.name +
-            ' with details: ' + req.body.description);
-    })
-
-    .delete(function(req, res, next){
-        res.end('Deleting all leaders');
+.get(Verify.verifyOrdinaryUser, function (req, res, next) {
+    Leaders.find({}, function (err, leader) {
+        if (err) {
+            throw err;
+        }
+        res.json(leader);
     });
+})
+
+.post(Verify.verifyAdmin, function (req, res, next) {
+    Leaders.create(req.body, function (err, leader) {
+        if (err) {
+            throw err;
+        }
+        res.json(leader);
+    });
+})
+
+.delete(Verify.verifyAdmin, function (req, res, next) {
+    Leaders.remove({}, function (err, resp) {
+        if (err) {
+            throw err;
+        }
+        res.json(resp);
+    });
+});
 
 leaderRouter.route('/:leaderId')
-    .all(function(req, res, next) {
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
-        next();
-    })
-
-    .get(function(req, res, next){
-        res.end('Will send details of the leader: ' + req.params.leaderId +' to you!');
-    })
-
-    .put(function(req, res, next){
-        res.write('Updating the leader: ' + req.params.leaderId + '\n');
-        res.end('Will update the leader: ' + req.body.name +
-            ' with details: ' + req.body.description);
-    })
-
-    .delete(function(req, res, next){
-        res.end('Deleting the leader: ' + req.params.leaderId);
+.get(Verify.verifyOrdinaryUser, function (req, res, next) {
+    Leaders.findById(req.params.leaderId, function (err, leader) {
+        if (err) {
+            throw err;
+        }
+        res.json(leader);
     });
+})
+
+.put(Verify.verifyAdmin, function (req, res, next) {
+    Leaders.findByIdAndUpdate(req.params.leaderId, {
+        $set: req.body
+    }, {
+        new: true
+    }, function (err, leader) {
+        if (err) {
+            throw err;
+        }
+        res.json(leader);
+    });
+})
+
+.delete(Verify.verifyAdmin, function (req, res, next) {
+    Leaders.findByIdAndRemove(req.params.leaderId, function (err, resp) {
+        if (err) {
+            throw err;
+        }
+        res.json(resp);
+    });
+});
 
 module.exports = leaderRouter;
