@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var Leaders = require('../models/lidership');
+var Leaders = require('../models/leadership');
 
 var leaderRouter = express.Router();
 leaderRouter.use(bodyParser.json());

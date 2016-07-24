@@ -48,8 +48,8 @@ exports.verifyAdmin = function (req, res, next) {
     jwt.verify(token, config.secretKey, function (err, decoded) {
 
         if (err || !decoded || !decoded._doc.admin) {
-            err = new Error('You are not authenticated!');
-            err.status = 401;
+            err = new Error('You are not authorizeded!');
+            err.status = 403;
             return next(err);
         }
 
