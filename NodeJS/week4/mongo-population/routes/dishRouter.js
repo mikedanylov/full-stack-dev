@@ -1,3 +1,14 @@
+var express = require('express');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+var Dishes = require('../models/dishes');
+
+var dishRouter = express.Router();
+dishRouter.use(bodyParser.json());
+
+var Verify = require('./verify');
+
 dishRouter.route('/')
 .get(Verify.verifyOrdinaryUser, function (req, res, next) {
     Dishes.find({})
@@ -140,3 +151,5 @@ dishRouter.route('/:dishId/comments/:commentId')
         });
     });
 });
+
+module.exports = dishRouter;

@@ -48,9 +48,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/dishes',dishRouter);
-app.use('/promotions',promoRouter);
-app.use('/leadership',leaderRouter);
+app.use('/dishes', dishRouter);
+app.use('/promotions', promoRouter);
+app.use('/leadership', leaderRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -80,6 +80,18 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+});
+
+// Secure traffic only
+app.all('*', function(req, res, next){
+
+    console.log('req start: ', req.secure, req.hostname, req.url, app.get('port'));
+
+    if (req.secure) {
+        return next();
+    };
+
+    res.redirect('https://' + req.hostname + ':' + app.get('secPort') + req.url);
 });
 
 module.exports = app;

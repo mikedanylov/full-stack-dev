@@ -21,7 +21,7 @@ router
     });
 })
 
-.router.post('/register', function(req, res) {
+.post('/register', function(req, res) {
     User.register(new User({ username : req.body.username }),
         req.body.password, function(err, user) {
         if (err) {
@@ -39,7 +39,7 @@ router
             });
         });
     });
-});
+})
 
 .post('/login', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
