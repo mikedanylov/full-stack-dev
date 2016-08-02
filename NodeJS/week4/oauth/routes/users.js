@@ -4,24 +4,23 @@ var passport = require('passport');
 var User = require('../models/user');
 var Verify = require('./verify');
 
-router
-.get('/', Verify.verifyAdmin, function(req, res, next) {
+router.get('/', Verify.verifyAdmin, function(req, res, next) {
     User.find({}, function (err, users) {
         if (err) {
             throw err;
         }
         res.json(users);
     });
-})
+});
 
-.get('/logout', function(req, res) {
+router.get('/logout', function(req, res) {
     req.logout();
     res.status(200).json({
         status: 'Bye!'
     });
-})
+});
 
-.post('/register', function(req, res) {
+router.post('/register', function(req, res) {
     User.register(new User({ username : req.body.username }),
         req.body.password, function(err, user) {
         if (err) {
@@ -39,9 +38,9 @@ router
             });
         });
     });
-})
+});
 
-.post('/login', function(req, res, next) {
+router.post('/login', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
 
         if (err) {
@@ -75,7 +74,7 @@ router
 
 router.get('/facebook', passport.authenticate('facebook'), function(req, res){});
 
-router.get('/facebook/callback', function(req,res,next){
+router.get('/facebook/callback', function(req, res, next) {
     passport.authenticate('facebook', function(err, user, info) {
         if (err) {
             return next(err);
