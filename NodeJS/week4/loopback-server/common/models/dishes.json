@@ -1,0 +1,43 @@
+{
+  "name": "dishes",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "default": "\"\""
+    },
+    "description": {
+      "type": "string",
+      "required": true,
+      "default": "\"\""
+    },
+    "category": {
+      "type": "string",
+      "required": true,
+      "default": "\"\""
+    },
+    "image": {
+      "type": "string",
+      "required": true,
+      "default": "\"\""
+    },
+    "label": {
+      "type": "string",
+      "default": "\"\""
+    },
+    "price": {
+      "type": "string",
+      "required": true,
+      "default": "0"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
