@@ -9,26 +9,26 @@
     "name": {
       "type": "string",
       "required": true,
-      "default": "\"\""
+      "default": " "
     },
     "description": {
       "type": "string",
       "required": true,
-      "default": "\"\""
+      "default": " "
     },
     "category": {
       "type": "string",
       "required": true,
-      "default": "\"\""
+      "default": " "
     },
     "image": {
       "type": "string",
       "required": true,
-      "default": "\"\""
+      "default": " "
     },
     "label": {
       "type": "string",
-      "default": "\"\""
+      "default": " "
     },
     "price": {
       "type": "string",
