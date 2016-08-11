@@ -18,7 +18,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "dishes": {
+      "type": "belongsTo",
+      "model": "dishes",
+      "foreignKey": ""
+    },
+    "customer": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": "customerId"
+    }
+  },
   "acls": [],
   "methods": {}
 }
